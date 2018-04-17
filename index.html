@@ -7,6 +7,7 @@
 <html>
 	<head>
 		<title>Isaac Buckman</title>
+		<link rel="icon" type="image/png" href="images/icon.png"/>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/html5shiv.js"></script><![endif]-->
@@ -67,6 +68,7 @@
 						<footer>
 							<ul class="icons">
 								<li><a href="https://github.com/isaacbuckman" class="fa-github">GitHub</a></li>
+								<li><a id="email" class="fa-envelope">Email</a></li>
 								<!-- <li><a href="#" class="fa-devpost">Instagram</a></li>
 								<li><a href="#" class="fa-facebook">Facebook</a></li> -->
 							</ul>
@@ -88,6 +90,28 @@
 				if ('addEventListener' in window) {
 					window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
 					document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+				}
+				document.getElementById("email").addEventListener("click", function() {
+					CopyTextToClipboard("hello@isaacbuckman.com");
+				});
+				function CopyTextToClipboard(text) {
+					var textArea = document.createElement("textarea");
+					textArea.value = text;
+					document.body.appendChild(textArea);
+					textArea.focus();
+					textArea.select();
+					textArea.value=textArea.value.toLowerCase();
+
+				  try {
+					var successful = document.execCommand('copy');
+					var msg = successful ? 'successful' : 'unsuccessful';
+					alert('\"' + text + "\" copied to clipboard");
+					console.log('Fallback: Copying text command was ' + msg);
+				  } catch (err) {
+					console.error('Fallback: Oops, unable to copy', err);
+				  }
+
+				  document.body.removeChild(textArea);
 				}
 			</script>
 
